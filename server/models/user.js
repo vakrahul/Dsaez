@@ -7,4 +7,5 @@ const UserSchema = new mongoose.Schema({
   score: { type: Number, default: 0 },
   problemsSolved: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Problem' }],
 });
+
 module.exports = mongoose.model('User', UserSchema);

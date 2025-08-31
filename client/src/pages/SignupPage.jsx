@@ -25,8 +25,9 @@ const SignupPage = () => {
       setMessage('Registration successful!');
       navigate('/problems');
     } catch (err) {
-      setMessage('Registration failed. User may already exist.');
-      console.error(err.response.data);
+      const serverMessage = err.response ? err.response.data.msg || 'Server Error' : 'Network Error';
+      setMessage(`Registration failed: ${serverMessage}`);
+      console.error(err.response ? err.response.data : err.message);
     }
   };
 
@@ -91,7 +92,7 @@ const SignupPage = () => {
               Already have an account? Sign In
             </a>
           </div>
-          {message && <p className="text-center text-red-500 mt-4">{message}</p>}
+          {message && <p className="mt-4 text-center text-sm">{message}</p>}
         </form>
       </div>
     </div>
